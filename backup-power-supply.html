@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIY Backup Power Supply &mdash; Chris Trummer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="projects.html">Projects</a></li>
+  </ul>
+</nav>
+
+<hr>
+
+<h1>DIY Backup Power Supply from Lead Acid Batteries</h1>
+
+<h2>The Idea</h2>
+<p>What do you do when you have 3 12V 8.5Ah lead acid batteries lying around? You build a monster backup power supply.</p>
+
+<p>I wanted something that could actually run household electronics during a blackout. I found a 300W pure sine wave inverter and a few other parts and got to work.</p>
+
+<p>I've never done this before so i consulted with google Gemini and got to work.</p>
+
+<h2>Building the Battery Bank</h2>
+<p>I started by wiring my three Power-Sonic batteries in parallel, which effectively tripled my capacity to 25.5Ah while keeping the system at a steady 12V.</p>
+
+<img src="assets/battery-stuff/battery.jpg" alt="Power-Sonic PSH-1280F2-FR — 12V 8.5Ah sealed lead-acid battery" class="project-img">
+
+<h2>Choosing the Inverter &amp; Wiring</h2>
+<p>The heart of the build is a 300W pure sine wave inverter. For safety I installed a 40A inline fuse on the positive line as close to the battery bank as possible to act as a fail-safe against short circuits.</p>
+
+<h2>Wiring Diagram</h2>
+<img src="assets/battery-stuff/mermaid-diagram.png" alt="Wiring diagram of the parallel battery bank, fuse, inverter, and charger" class="project-img">
+<p><a href="backup-power-supply-diagram.html">Copy the Mermaid chart source &rarr;</a></p>
+
+<h2>Keeping It Charged</h2>
+<p>To keep the batteries healthy I integrated a NOCO Genius 1 smart maintainer. This little 1A charger stays plugged in all the time and uses a dedicated AGM mode to float the batteries at 13.6V. This setup means my bank is always sitting at 100% capacity and ready to go.</p>
+
+<img src="assets/battery-stuff/maintainer.jpg" alt="NOCO Genius 1 smart charger set to 12V AGM mode" class="project-img">
+
+<h2>The Final Build</h2>
+<img src="assets/battery-stuff/final.jpg" alt="Completed backup power supply — three batteries, inverter, and fuse wired inside a plastic bin" class="project-img">
+
+<h2>Results &amp; Takeaways</h2>
+<p>Compared to a standard APC 650 unit, my DIY system actually has about 306Wh of total energy, roughly 3x the capacity of those entry-level store-bought backups.</p>
+
+<h2>Parts List (no affiliation)</h2>
+<ul>
+  <li><a href="https://www.amazon.com/Powersonic-High-Rate-PSH-1280F2FR-Fast/dp/B00788D00O" target="_blank" rel="noopener">Power-Sonic PSH-1280F2-FR 12V 8.5Ah Battery</a></li>
+  <li><a href="https://www.amazon.com/dp/B07KQ4Q2L5?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1" target="_blank" rel="noopener">BESTEK 300W Pure Sine Wave Inverter</a></li>
+  <li><a href="https://www.lowes.com/pd/Southwire-100-Ft-10-Gauge-Primary-Wire-Red/5001723765" target="_blank" rel="noopener">Southwire 10AWG Stranded Copper Wire (Lowe's)</a></li>
+  <li><a href="https://www.amazon.com/dp/B0D9JP7PL4" target="_blank" rel="noopener">40A Inline Fuse Holder</a></li>
+  <li><a href="https://www.amazon.com/dp/B07W46BX31?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1" target="_blank" rel="noopener">NOCO Genius 1 Smart Battery Charger/Maintainer</a></li>
+</ul>
+
+<hr>
+
+<p><small>Chris Trummer &copy; 2026</small></p>
+
+</body>
+</html>

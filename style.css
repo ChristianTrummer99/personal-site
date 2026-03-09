@@ -32,3 +32,22 @@ nav ul {
   border-radius: 50%;
   object-fit: cover;
 }
+
+.project-img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+pre {
+  background: #f4f4f4;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

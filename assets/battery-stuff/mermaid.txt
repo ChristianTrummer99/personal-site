@@ -1,0 +1,38 @@
+graph TD
+    %% Battery Bank Section
+    subgraph Battery_Bank [12V Battery Bank - Parallel Connection]
+        B3[Battery 3: 12V 8.5Ah] -- Red Wire (+) --- B2[Battery 2: 12V 8.5Ah]
+        B2 -- Red Wire (+) --- B1[Battery 1: 12V 8.5Ah]
+        
+        B3 -- Black Wire (-) --- B2
+        B2 -- Black Wire (-) --- B1
+    end
+
+    %% Connection Points
+    B1 -- Red (+) --- POS_HUB((Positive Junction))
+    B1 -- Black (-) --- NEG_HUB((Negative Junction))
+
+    %% Protection & Charging
+    POS_HUB -- Red Wire --- FUSE{40A Inline Fuse}
+    
+    %% Output to Inverter
+    FUSE -- Fused Red --- INV_POS[Inverter Positive +]
+    NEG_HUB -- Black Wire --- INV_NEG[Inverter Negative -]
+
+    %% Input from Wall Charger
+    CHARGER_POS[NOCO Genius +] -- Red Lead --- POS_HUB
+    CHARGER_NEG[NOCO Genius -] -- Black Lead --- NEG_HUB
+
+    %% Device Output
+    subgraph AC_Output [110V/120V AC Power]
+        INV_POS & INV_NEG --> INVERTER[Pure Sine Wave Inverter]
+        INVERTER --> OUTLET1[Standard Wall Outlet]
+        INVERTER --> OUTLET2[USB Charging Ports]
+    end
+
+    %% Styles
+    style FUSE fill:#f96,stroke:#333,stroke-width:2px
+    style B1 fill:#bbf,stroke:#333
+    style B2 fill:#bbf,stroke:#333
+    style B3 fill:#bbf,stroke:#333
+    style INVERTER fill:#dfd,stroke:#333

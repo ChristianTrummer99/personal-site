@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiring Diagram &mdash; DIY Backup Power Supply &mdash; Chris Trummer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="projects.html">Projects</a></li>
+  </ul>
+</nav>
+
+<hr>
+
+<p><a href="backup-power-supply.html">&larr; Back to project</a></p>
+
+<h1>Wiring Diagram &mdash; Mermaid Chart</h1>
+
+<p>Below is the Mermaid source for the wiring diagram. Paste it into
+<a href="https://mermaid.live" target="_blank" rel="noopener">mermaid.live</a>
+to render or edit it yourself.</p>
+
+<pre id="mermaid-code">graph TD
+    %% Battery Bank Section
+    subgraph Battery_Bank [12V Battery Bank - Parallel Connection]
+        B3[Battery 3: 12V 8.5Ah] -- Red Wire (+) --- B2[Battery 2: 12V 8.5Ah]
+        B2 -- Red Wire (+) --- B1[Battery 1: 12V 8.5Ah]
+        
+        B3 -- Black Wire (-) --- B2
+        B2 -- Black Wire (-) --- B1
+    end
+
+    %% Connection Points
+    B1 -- Red (+) --- POS_HUB((Positive Junction))
+    B1 -- Black (-) --- NEG_HUB((Negative Junction))
+
+    %% Protection &amp; Charging
+    POS_HUB -- Red Wire --- FUSE{40A Inline Fuse}
+    
+    %% Output to Inverter
+    FUSE -- Fused Red --- INV_POS[Inverter Positive +]
+    NEG_HUB -- Black Wire --- INV_NEG[Inverter Negative -]
+
+    %% Input from Wall Charger
+    CHARGER_POS[NOCO Genius +] -- Red Lead --- POS_HUB
+    CHARGER_NEG[NOCO Genius -] -- Black Lead --- NEG_HUB
+
+    %% Device Output
+    subgraph AC_Output [110V/120V AC Power]
+        INV_POS &amp; INV_NEG --> INVERTER[Pure Sine Wave Inverter]
+        INVERTER --> OUTLET1[Standard Wall Outlet]
+        INVERTER --> OUTLET2[USB Charging Ports]
+    end
+
+    %% Styles
+    style FUSE fill:#f96,stroke:#333,stroke-width:2px
+    style B1 fill:#bbf,stroke:#333
+    style B2 fill:#bbf,stroke:#333
+    style B3 fill:#bbf,stroke:#333
+    style INVERTER fill:#dfd,stroke:#333</pre>
+
+<button id="copy-btn" onclick="copyMermaid()">Copy to Clipboard</button>
+
+<script>
+function copyMermaid() {
+  var text = document.getElementById('mermaid-code').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy to Clipboard'; }, 2000);
+  });
+}
+</script>
+
+<hr>
+
+<p><small>Chris Trummer &copy; 2026</small></p>
+
+</body>
+</html>
